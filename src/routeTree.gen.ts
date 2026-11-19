@@ -10,33 +10,173 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedFinanceiroRouteImport } from './routes/_authenticated/financeiro'
+import { Route as AuthenticatedProdutosRouteImport } from './routes/_authenticated/produtos'
+import { Route as AuthenticatedVendasRouteImport } from './routes/_authenticated/vendas'
+import { Route as CheckoutIdRouteImport } from './routes/checkout.$id'
+import { Route as PedidoOrderIdRouteImport } from './routes/pedido.$orderId'
+import { Route as AuthenticatedEmBreveSecaoRouteImport } from './routes/_authenticated/em-breve.$secao'
+import { Route as ApiPublicPaysuiteWebhookRouteImport } from './routes/api/public/paysuite-webhook'
+import { Route as PagamentoSimuladoOrderIdRouteImport } from './routes/pagamento.simulado.$orderId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFinanceiroRoute = AuthenticatedFinanceiroRouteImport.update({
+  id: '/financeiro',
+  path: '/financeiro',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedProdutosRoute = AuthenticatedProdutosRouteImport.update({
+  id: '/produtos',
+  path: '/produtos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedVendasRoute = AuthenticatedVendasRouteImport.update({
+  id: '/vendas',
+  path: '/vendas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const CheckoutIdRoute = CheckoutIdRouteImport.update({
+  id: '/checkout/$id',
+  path: '/checkout/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PedidoOrderIdRoute = PedidoOrderIdRouteImport.update({
+  id: '/pedido/$orderId',
+  path: '/pedido/$orderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedEmBreveSecaoRoute =
+  AuthenticatedEmBreveSecaoRouteImport.update({
+    id: '/em-breve/$secao',
+    path: '/em-breve/$secao',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const ApiPublicPaysuiteWebhookRoute =
+  ApiPublicPaysuiteWebhookRouteImport.update({
+    id: '/api/public/paysuite-webhook',
+    path: '/api/public/paysuite-webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PagamentoSimuladoOrderIdRoute =
+  PagamentoSimuladoOrderIdRouteImport.update({
+    id: '/pagamento/simulado/$orderId',
+    path: '/pagamento/simulado/$orderId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/financeiro': typeof AuthenticatedFinanceiroRoute
+  '/produtos': typeof AuthenticatedProdutosRoute
+  '/vendas': typeof AuthenticatedVendasRoute
+  '/checkout/$id': typeof CheckoutIdRoute
+  '/pedido/$orderId': typeof PedidoOrderIdRoute
+  '/em-breve/$secao': typeof AuthenticatedEmBreveSecaoRoute
+  '/api/public/paysuite-webhook': typeof ApiPublicPaysuiteWebhookRoute
+  '/pagamento/simulado/$orderId': typeof PagamentoSimuladoOrderIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/financeiro': typeof AuthenticatedFinanceiroRoute
+  '/produtos': typeof AuthenticatedProdutosRoute
+  '/vendas': typeof AuthenticatedVendasRoute
+  '/checkout/$id': typeof CheckoutIdRoute
+  '/pedido/$orderId': typeof PedidoOrderIdRoute
+  '/em-breve/$secao': typeof AuthenticatedEmBreveSecaoRoute
+  '/api/public/paysuite-webhook': typeof ApiPublicPaysuiteWebhookRoute
+  '/pagamento/simulado/$orderId': typeof PagamentoSimuladoOrderIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/financeiro': typeof AuthenticatedFinanceiroRoute
+  '/_authenticated/produtos': typeof AuthenticatedProdutosRoute
+  '/_authenticated/vendas': typeof AuthenticatedVendasRoute
+  '/checkout/$id': typeof CheckoutIdRoute
+  '/pedido/$orderId': typeof PedidoOrderIdRoute
+  '/_authenticated/em-breve/$secao': typeof AuthenticatedEmBreveSecaoRoute
+  '/api/public/paysuite-webhook': typeof ApiPublicPaysuiteWebhookRoute
+  '/pagamento/simulado/$orderId': typeof PagamentoSimuladoOrderIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/financeiro'
+    | '/produtos'
+    | '/vendas'
+    | '/checkout/$id'
+    | '/pedido/$orderId'
+    | '/em-breve/$secao'
+    | '/api/public/paysuite-webhook'
+    | '/pagamento/simulado/$orderId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/financeiro'
+    | '/produtos'
+    | '/vendas'
+    | '/checkout/$id'
+    | '/pedido/$orderId'
+    | '/em-breve/$secao'
+    | '/api/public/paysuite-webhook'
+    | '/pagamento/simulado/$orderId'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/financeiro'
+    | '/_authenticated/produtos'
+    | '/_authenticated/vendas'
+    | '/checkout/$id'
+    | '/pedido/$orderId'
+    | '/_authenticated/em-breve/$secao'
+    | '/api/public/paysuite-webhook'
+    | '/pagamento/simulado/$orderId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  CheckoutIdRoute: typeof CheckoutIdRoute
+  PedidoOrderIdRoute: typeof PedidoOrderIdRoute
+  ApiPublicPaysuiteWebhookRoute: typeof ApiPublicPaysuiteWebhookRoute
+  PagamentoSimuladoOrderIdRoute: typeof PagamentoSimuladoOrderIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +188,113 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/financeiro': {
+      id: '/_authenticated/financeiro'
+      path: '/financeiro'
+      fullPath: '/financeiro'
+      preLoaderRoute: typeof AuthenticatedFinanceiroRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/produtos': {
+      id: '/_authenticated/produtos'
+      path: '/produtos'
+      fullPath: '/produtos'
+      preLoaderRoute: typeof AuthenticatedProdutosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/vendas': {
+      id: '/_authenticated/vendas'
+      path: '/vendas'
+      fullPath: '/vendas'
+      preLoaderRoute: typeof AuthenticatedVendasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/checkout/$id': {
+      id: '/checkout/$id'
+      path: '/checkout/$id'
+      fullPath: '/checkout/$id'
+      preLoaderRoute: typeof CheckoutIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pedido/$orderId': {
+      id: '/pedido/$orderId'
+      path: '/pedido/$orderId'
+      fullPath: '/pedido/$orderId'
+      preLoaderRoute: typeof PedidoOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/em-breve/$secao': {
+      id: '/_authenticated/em-breve/$secao'
+      path: '/em-breve/$secao'
+      fullPath: '/em-breve/$secao'
+      preLoaderRoute: typeof AuthenticatedEmBreveSecaoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/public/paysuite-webhook': {
+      id: '/api/public/paysuite-webhook'
+      path: '/api/public/paysuite-webhook'
+      fullPath: '/api/public/paysuite-webhook'
+      preLoaderRoute: typeof ApiPublicPaysuiteWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamento/simulado/$orderId': {
+      id: '/pagamento/simulado/$orderId'
+      path: '/pagamento/simulado/$orderId'
+      fullPath: '/pagamento/simulado/$orderId'
+      preLoaderRoute: typeof PagamentoSimuladoOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedFinanceiroRoute: typeof AuthenticatedFinanceiroRoute
+  AuthenticatedProdutosRoute: typeof AuthenticatedProdutosRoute
+  AuthenticatedVendasRoute: typeof AuthenticatedVendasRoute
+  AuthenticatedEmBreveSecaoRoute: typeof AuthenticatedEmBreveSecaoRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedFinanceiroRoute: AuthenticatedFinanceiroRoute,
+  AuthenticatedProdutosRoute: AuthenticatedProdutosRoute,
+  AuthenticatedVendasRoute: AuthenticatedVendasRoute,
+  AuthenticatedEmBreveSecaoRoute: AuthenticatedEmBreveSecaoRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  CheckoutIdRoute: CheckoutIdRoute,
+  PedidoOrderIdRoute: PedidoOrderIdRoute,
+  ApiPublicPaysuiteWebhookRoute: ApiPublicPaysuiteWebhookRoute,
+  PagamentoSimuladoOrderIdRoute: PagamentoSimuladoOrderIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
