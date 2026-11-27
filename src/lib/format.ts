@@ -1,11 +1,15 @@
-export const USD_RATE = 63.9; // 1 USD ≈ 63,9 MZN (taxa de referência)
+import { formatCurrency, type Currency } from "@/lib/currency";
 
-export type Currency = "MZN" | "USD";
+export const USD_RATE = 63.9; // Taxa de referência mantida apenas para o dashboard legado.
+export type { Currency } from "@/lib/currency";
+export type LegacyDisplayCurrency = "MZN" | "USD";
 
-export function formatMoney(valueMzn: number, currency: Currency = "MZN") {
-  const v = currency === "USD" ? valueMzn / USD_RATE : valueMzn;
-  const n = new Intl.NumberFormat("pt-MZ", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v);
-  return currency === "USD" ? `US$ ${n}` : `MZN ${n}`;
+export function formatMoney(amount: number, currency: Currency = "MZN") {
+  return formatCurrency(amount, currency);
+}
+
+export function formatMznInLegacyDisplayCurrency(amountMzn: number, currency: LegacyDisplayCurrency = "MZN") {
+  return formatCurrency(currency === "USD" ? amountMzn / USD_RATE : amountMzn, currency);
 }
 
 export function formatDate(iso: string) {

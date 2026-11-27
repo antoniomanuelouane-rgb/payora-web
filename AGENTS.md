@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+Keep supported currencies, their display formats, guarantee periods, and withdrawal bounds together in `src/lib/currency.ts` so payment and finance screens share one rule source.

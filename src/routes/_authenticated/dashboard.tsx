@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { PageHeader } from "@/components/payora/AppShell";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { computeMetrics } from "@/lib/finance";
-import { formatMoney, USD_RATE, type Currency } from "@/lib/format";
+import { formatMznInLegacyDisplayCurrency, USD_RATE, type LegacyDisplayCurrency } from "@/lib/format";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({ meta: [{ title: "Dashboard — Payora" }, { name: "robots", content: "noindex" }] }),
@@ -26,7 +26,7 @@ function startOf(period: Period) {
 function Dashboard() {
   const [period, setPeriod] = useState<Period>("7d");
   const [productId, setProductId] = useState("all");
-  const [currency, setCurrency] = useState<Currency>("MZN");
+  const [currency, setCurrency] = useState<LegacyDisplayCurrency>("MZN");
 
   const { data: products = [] } = useQuery({
     queryKey: ["products-min"],
@@ -60,11 +60,11 @@ function Dashboard() {
 
   const pct = (n: number) => `${n.toFixed(1).replace(".", ",")}%`;
   const cards = [
-    { label: "Valor líquido", value: formatMoney(m.net, currency) },
+    { label: "Valor líquido", value: formatMznInLegacyDisplayCurrency(m.net, currency) },
     { label: "Vendas", value: String(m.sales) },
     { label: "Aprovação cartão", value: pct(m.cardApproval) },
     { label: "Vendas 1-click", value: String(m.oneClick) },
-    { label: "Reembolso", value: formatMoney(m.refunds, currency) },
+    { label: "Reembolso", value: formatMznInLegacyDisplayCurrency(m.refunds, currency) },
     { label: "Conversão (M-Pesa/e-Mola)", value: pct(m.mobileConversion) },
     { label: "Chargeback", value: String(m.chargebacks) },
     { label: "Pagamentos gerados", value: String(m.generated) },
@@ -93,7 +93,7 @@ function Dashboard() {
       <div className="mb-6 rounded-2xl bg-card p-5 shadow-card">
         <div className="mb-4 flex items-baseline justify-between">
           <h2 className="font-semibold">Vendas do período</h2>
-          <span className="text-sm text-muted-foreground">{formatMoney(m.net, currency)}</span>
+          <span className="text-sm text-muted-foreground">{formatMznInLegacyDisplayCurrency(m.net, currency)}</span>
         </div>
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
@@ -107,7 +107,7 @@ function Dashboard() {
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
               <XAxis dataKey="label" tick={{ fontSize: 12, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 12, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} width={50} />
-              <Tooltip formatter={(v: number) => (currency === "USD" ? `US$ ${v.toFixed(2)}` : `MZN ${v.toFixed(2)}`)} />
+              <Tooltip formatter={(v: number) => formatMznInLegacyDisplayCurrency(v, currency)} />
               <Area type="monotone" dataKey="valor" name="Vendas" stroke="var(--primary)" strokeWidth={2.5} fill="url(#fillV)" />
             </AreaChart>
           </ResponsiveContainer>

@@ -83,7 +83,7 @@ function Checkout() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="checkout-light min-h-screen bg-background">
       <div className="bg-ink py-3"><div className="mx-auto flex max-w-5xl items-center gap-2 px-4"><LogoMark className="h-6 w-6" /><span className="font-display text-sm font-bold tracking-[0.12em] text-topbar-foreground">PAYORA</span><span className="ml-auto flex items-center gap-1 text-xs text-topbar-foreground/70"><Lock className="h-3 w-3" />Pagamento seguro</span></div></div>
       <div className="mx-auto grid max-w-5xl gap-6 px-4 py-8 md:grid-cols-5">
         <div className="md:col-span-2">

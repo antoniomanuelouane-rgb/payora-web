@@ -1,6 +1,6 @@
 # Payora roadmap
 
-- [ ] Extend the data model and security for currencies, fees, guarantees, refunds, roles, affiliations, members, and webhooks.
-- [ ] Update product creation, checkout, sales, dashboard, and multi-currency finance flows.
-- [ ] Add the PDF's affiliate marketplace, members, integrations, and platform administration screens.
-- [ ] Run focused rule tests and verify the main purchase flow in the preview.
+- [ ] Expandir a base de dados e as regras de segurança para moedas, taxas, garantias, reembolsos, afiliações, membros e webhooks. **Bloqueado:** Lovable Cloud está pausado; a tentativa de migração não aplicou alterações.
+- [ ] Actualizar produtos, checkout, vendas, dashboard e saldos por moeda. **Aguarda** a nova estrutura de dados.
+- [ ] Criar Vitrine/Afiliados, Payora Members, Integrações/Webhooks e Administração. **Aguarda** a nova estrutura de dados.
+- [ ] Executar testes de regras e verificar uma compra completa. **Aguarda** o banco activo.
