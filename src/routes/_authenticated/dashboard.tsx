@@ -84,7 +84,7 @@ function Dashboard() {
             {products.map((p) => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}
           </SelectContent>
         </Select>
-        <Select value={currency} onValueChange={(v) => setCurrency(v as Currency)}>
+        <Select value={currency} onValueChange={(v) => setCurrency(v as LegacyDisplayCurrency)}>
           <SelectTrigger className="w-24 bg-card"><SelectValue /></SelectTrigger>
           <SelectContent><SelectItem value="MZN">MZN</SelectItem><SelectItem value="USD">USD</SelectItem></SelectContent>
         </Select>
